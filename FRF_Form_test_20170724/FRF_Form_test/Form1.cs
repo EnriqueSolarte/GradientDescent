@@ -18,11 +18,17 @@ using Mechatronics.MathToolBox;
 using Mechatronics.SimCore.FrequencyResponse;
 using Mechatronics.SimCore.Object;
 using Mechatronics.FANUC;
+using System.Windows.Forms.DataVisualization.Charting;
+
+using Optimization;
 
 namespace FRF_Form_test
 {
     public partial class Form1 : Form
     {
+        public FRF[] Struct_ref;
+        public List<Mode> VLoopModes;
+
         public Form1()
         {
             InitializeComponent();
@@ -38,55 +44,58 @@ namespace FRF_Form_test
 
 
             //Create Structure Nature Modes Object
-            List<Mode> VLoopModes = new List<Mode>();
+            VLoopModes = new List<Mode>();
             CreateModes(VLoopModes);
-
-            //Set experiment Control Parameters 
+            //Set experiment Control Parameters
             ServoPrm P = SetParameters();
-            FANUCMotor Motor = new FANUCMotor(1.2, 0.012); 
+            FANUCMotor Motor = new FANUCMotor(1.2, 0.012);
 
-            //create Object
-            VelocityLoop VR = new VelocityLoop(P, Motor, VLoopModes);
+            ////create Object
+            // VR = new VelocityLoop(P, Motor, VLoopModes);
+         
 
             //read FRF File from csv file, which is created by servoguide
             //this data is considered as referance.
             FRF[] Close_ref =  Tool.Read_ServoGuide_FRFdata("Frequency_Response_Axis-1_1_-_1000Hz.csv");
-
-           
             //set freq interval. it should be identical with ref.
-            VR.IsFreqDataSameAsRef = true;
-            VR.SetCustomFreqInterval(Close_ref);
+            //VR.IsFreqDataSameAsRef = true;
+            //VR.SetCustomFreqInterval(Close_ref);
 
-
-            //caculate simulated FRF.
-            FRF[] Close_sim = VR.GetCloseLoop();
-            FRF[] Open_sim = VR.GetOpenLoop();
-
-            //draw simulated FRF of close loop system
-            DrawLine(Close_ref, 0);
-            DrawLine(Close_sim, 1);
 
 
             //remove controller response from measurement data
             //extract Structure response
-            FRF[] Struct_ref = Tool.ExtractStructureResponseFromVLoop(P, Motor, Close_ref);
+             Struct_ref = Tool.ExtractStructureResponseFromVLoop(P, Motor, Close_ref);
+            //OPTIMIZATION TARGET 
+
+
+
+            ////caculate simulated FRF.
+            //FRF[] Close_sim = VR.GetCloseLoop(); //////////// HERE
+            //FRF[] Open_sim = VR.GetOpenLoop(); //////////// HERE
+
+            //draw simulated FRF of close loop system
+            //DrawLine(Close_ref, 0);
+            //DrawLine(Close_sim, 1);
 
 
             //caculate simulated Structure FRF.
-            FRF[] Struct_sim = new FRF[Struct_ref.Length];
-            for (int i = 0; i < Struct_ref.Length; i++)
-            {
-                Complex Res = Tool.GetStructureResponse(Struct_ref[i].Freq, VLoopModes, "Velocity");
-                Struct_sim[i] = new FRF(Struct_ref[i].Freq, Res);
-            }
-           
-            //draw simulated FRF of structure
-            DrawLine(Struct_ref, 0);
-            DrawLine(Struct_sim, 1);
+            //FRF[] Struct_sim = new FRF[Struct_ref.Length];
+            //for (int i = 0; i < Struct_ref.Length; i++)
+            //{
+            //    Complex Res = Tool.GetStructureResponse(Struct_ref[i].Freq, VLoopModes, "Velocity");
+            //    Struct_sim[i] = new FRF(Struct_ref[i].Freq, Res);
+            //}
 
+
+
+            //draw simulated FRF of structure
+
+            DrawLine(Struct_ref, 0);
+            //DrawLine(Struct_sim, 1);
         }
 
-
+        #region fix
         ServoPrm SetParameters()
         {//value is from *.prm file (ServoGuide Parameter file)
 
@@ -105,7 +114,7 @@ namespace FRF_Form_test
 
             return P;
         }
-        void CreateModes(List<Mode> VLoopModes)
+        public static void CreateModes(List<Mode> VLoopModes)
         {
 
             Mode mode;
@@ -138,7 +147,6 @@ namespace FRF_Form_test
 
 
         }
-
         void DrawLine(FRF[] FRFData, int Channel)
         {
             //X AXIS in log scale
@@ -157,7 +165,43 @@ namespace FRF_Form_test
             }
 
         }
+        internal static void DrawLine(FRF[] FRFData, int Channel, Chart Chart_mag, Chart Chart_phs)
+        {
+            //X AXIS in log scale
+            Chart_mag.ChartAreas[0].AxisX.IsLogarithmic = true;
+            Chart_phs.ChartAreas[0].AxisX.IsLogarithmic = true;
+
+            //reset
+            Chart_mag.Series[Channel].Points.Clear();
+            Chart_phs.Series[Channel].Points.Clear();
+
+            for (int i = 0; i < FRFData.Length; i++)
+            {
+                Chart_mag.Series[Channel].Points.AddXY(FRFData[i].Freq, Mechatronics.MathToolBox.TL.DB(FRFData[i].Mag));
+                Chart_phs.Series[Channel].Points.AddXY(FRFData[i].Freq, FRFData[i].Phs);
+            }
+        }
+        internal void DrawResult(FRF[] resultOPT)
+        {
+            DrawLine(resultOPT, 1, chart_mag, chart_phs);
+        }
+        #endregion
 
 
+        private void InformationTipEvent(object sender, System.Windows.Forms.DataVisualization.Charting.ToolTipEventArgs e)
+        {
+            if (e.HitTestResult.ChartElementType == ChartElementType.DataPoint)
+            {
+                DataPoint myPoint = (DataPoint)(e.HitTestResult.Object);
+                e.Text = "X value: " + myPoint.XValue + Environment.NewLine;
+                e.Text += "Y value: " + myPoint.YValues[0] + Environment.NewLine;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormGradientDescentOption GDFrom = new FormGradientDescentOption(this);
+            GDFrom.Show();
+        }
     }
 }

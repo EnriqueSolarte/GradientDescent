@@ -41,6 +41,15 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\MechatronicsOPT\SRC\MechatronicsOpt\Core\bin\Debug\Core.dll</HintPath>
     </Reference>
+    <Reference Include="GeneticAlgorithm">
+      <HintPath>..\GradientDescent.cs\bin\Debug\GeneticAlgorithm.dll</HintPath>
+    </Reference>
+    <Reference Include="GradientDescent.cs">
+      <HintPath>..\GradientDescent.cs\bin\Debug\GradientDescent.cs.dll</HintPath>
+    </Reference>
+    <Reference Include="IOPT">
+      <HintPath>..\GradientDescent.cs\bin\Debug\IOPT.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -60,10 +69,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGradientDescentOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGradientDescentOption.Designer.cs">
+      <DependentUpon>FormGradientDescentOption.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormGradientDescentOption.resx">
+      <DependentUpon>FormGradientDescentOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -76,6 +94,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
