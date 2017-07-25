@@ -37,6 +37,7 @@
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartFitness = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.radioButtonMass = new System.Windows.Forms.RadioButton();
             this.radioButtonZeta = new System.Windows.Forms.RadioButton();
@@ -72,6 +73,9 @@
             this.chartParameters = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.textBoxLRateZeta = new System.Windows.Forms.TextBox();
             this.textBoxLRateMass = new System.Windows.Forms.TextBox();
+            this.textBoxEvalRangeMin = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxEvalRangeMax = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.chartFitness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chartParameters)).BeginInit();
             this.SuspendLayout();
@@ -242,7 +246,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(238, 748);
+            this.label10.Location = new System.Drawing.Point(164, 753);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(27, 12);
             this.label10.TabIndex = 52;
@@ -259,7 +263,7 @@
             // 
             // textBoxDelta
             // 
-            this.textBoxDelta.Location = new System.Drawing.Point(275, 745);
+            this.textBoxDelta.Location = new System.Drawing.Point(201, 750);
             this.textBoxDelta.Name = "textBoxDelta";
             this.textBoxDelta.Size = new System.Drawing.Size(51, 22);
             this.textBoxDelta.TabIndex = 51;
@@ -272,21 +276,21 @@
             this.textBoxLRateFreq.Size = new System.Drawing.Size(51, 22);
             this.textBoxLRateFreq.TabIndex = 50;
             this.textBoxLRateFreq.Tag = "";
-            this.textBoxLRateFreq.Text = "0.001";
+            this.textBoxLRateFreq.Text = "0.1";
             // 
             // textBoxIterations
             // 
-            this.textBoxIterations.Location = new System.Drawing.Point(168, 742);
+            this.textBoxIterations.Location = new System.Drawing.Point(94, 747);
             this.textBoxIterations.Name = "textBoxIterations";
             this.textBoxIterations.Size = new System.Drawing.Size(51, 22);
             this.textBoxIterations.TabIndex = 50;
             this.textBoxIterations.Tag = "";
-            this.textBoxIterations.Text = "100";
+            this.textBoxIterations.Text = "500";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(114, 748);
+            this.label4.Location = new System.Drawing.Point(40, 753);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 12);
             this.label4.TabIndex = 53;
@@ -335,7 +339,6 @@
             this.textBoxOPError.Name = "textBoxOPError";
             this.textBoxOPError.Size = new System.Drawing.Size(252, 22);
             this.textBoxOPError.TabIndex = 54;
-            this.textBoxOPError.Text = "-2";
             // 
             // textBoxOPZeta
             // 
@@ -344,7 +347,6 @@
             this.textBoxOPZeta.Name = "textBoxOPZeta";
             this.textBoxOPZeta.Size = new System.Drawing.Size(252, 22);
             this.textBoxOPZeta.TabIndex = 55;
-            this.textBoxOPZeta.Text = "-2";
             // 
             // textBoxOPFreq
             // 
@@ -353,7 +355,6 @@
             this.textBoxOPFreq.Name = "textBoxOPFreq";
             this.textBoxOPFreq.Size = new System.Drawing.Size(252, 22);
             this.textBoxOPFreq.TabIndex = 56;
-            this.textBoxOPFreq.Text = "-2";
             // 
             // textBoxOPMass
             // 
@@ -362,12 +363,11 @@
             this.textBoxOPMass.Name = "textBoxOPMass";
             this.textBoxOPMass.Size = new System.Drawing.Size(252, 22);
             this.textBoxOPMass.TabIndex = 57;
-            this.textBoxOPMass.Text = "-2";
             // 
             // checkBoxInitialValues
             // 
             this.checkBoxInitialValues.AutoSize = true;
-            this.checkBoxInitialValues.Location = new System.Drawing.Point(241, 654);
+            this.checkBoxInitialValues.Location = new System.Drawing.Point(237, 657);
             this.checkBoxInitialValues.Name = "checkBoxInitialValues";
             this.checkBoxInitialValues.Size = new System.Drawing.Size(85, 16);
             this.checkBoxInitialValues.TabIndex = 62;
@@ -409,9 +409,15 @@
             series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series5.Legend = "Legend1";
             series5.Name = "Series3";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Color = System.Drawing.Color.Fuchsia;
+            series6.Legend = "Legend1";
+            series6.Name = "Series4";
             this.chartParameters.Series.Add(series3);
             this.chartParameters.Series.Add(series4);
             this.chartParameters.Series.Add(series5);
+            this.chartParameters.Series.Add(series6);
             this.chartParameters.Size = new System.Drawing.Size(742, 306);
             this.chartParameters.TabIndex = 64;
             this.chartParameters.Text = "11";
@@ -424,7 +430,7 @@
             this.textBoxLRateZeta.Size = new System.Drawing.Size(51, 22);
             this.textBoxLRateZeta.TabIndex = 50;
             this.textBoxLRateZeta.Tag = "";
-            this.textBoxLRateZeta.Text = "0.001";
+            this.textBoxLRateZeta.Text = "0.005";
             // 
             // textBoxLRateMass
             // 
@@ -433,7 +439,32 @@
             this.textBoxLRateMass.Size = new System.Drawing.Size(51, 22);
             this.textBoxLRateMass.TabIndex = 50;
             this.textBoxLRateMass.Tag = "";
-            this.textBoxLRateMass.Text = "0.001";
+            this.textBoxLRateMass.Text = "0.005";
+            // 
+            // textBoxEvalRangeMin
+            // 
+            this.textBoxEvalRangeMin.Location = new System.Drawing.Point(237, 708);
+            this.textBoxEvalRangeMin.Name = "textBoxEvalRangeMin";
+            this.textBoxEvalRangeMin.Size = new System.Drawing.Size(38, 22);
+            this.textBoxEvalRangeMin.TabIndex = 35;
+            this.textBoxEvalRangeMin.Text = "30";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(235, 693);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(88, 12);
+            this.label7.TabIndex = 38;
+            this.label7.Text = "Range Evaluation";
+            // 
+            // textBoxEvalRangeMax
+            // 
+            this.textBoxEvalRangeMax.Location = new System.Drawing.Point(281, 708);
+            this.textBoxEvalRangeMax.Name = "textBoxEvalRangeMax";
+            this.textBoxEvalRangeMax.Size = new System.Drawing.Size(38, 22);
+            this.textBoxEvalRangeMax.TabIndex = 35;
+            this.textBoxEvalRangeMax.Text = "500";
             // 
             // FormGradientDescentOption
             // 
@@ -461,6 +492,7 @@
             this.Controls.Add(this.buttonRunGradientDescent);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label22);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -468,6 +500,8 @@
             this.Controls.Add(this.textBoxMag3);
             this.Controls.Add(this.textBoxMag2);
             this.Controls.Add(this.textBoxMag1);
+            this.Controls.Add(this.textBoxEvalRangeMax);
+            this.Controls.Add(this.textBoxEvalRangeMin);
             this.Controls.Add(this.textBoxFreq3);
             this.Controls.Add(this.textBoxFreq2);
             this.Controls.Add(this.textBoxFreq1);
@@ -523,5 +557,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartParameters;
         private System.Windows.Forms.TextBox textBoxLRateZeta;
         private System.Windows.Forms.TextBox textBoxLRateMass;
+        private System.Windows.Forms.TextBox textBoxEvalRangeMin;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxEvalRangeMax;
     }
 }

@@ -27,7 +27,7 @@ namespace FRF_Form_test
     public partial class Form1 : Form
     {
         public FRF[] Struct_ref;
-        public List<Mode> VLoopModes;
+      
 
         public Form1()
         {
@@ -43,9 +43,8 @@ namespace FRF_Form_test
             //Add Motor object. (not important)
 
 
-            //Create Structure Nature Modes Object
-            VLoopModes = new List<Mode>();
-            CreateModes(VLoopModes);
+           
+           
             //Set experiment Control Parameters
             ServoPrm P = SetParameters();
             FANUCMotor Motor = new FANUCMotor(1.2, 0.012);
@@ -56,7 +55,7 @@ namespace FRF_Form_test
 
             //read FRF File from csv file, which is created by servoguide
             //this data is considered as referance.
-            FRF[] Close_ref =  Tool.Read_ServoGuide_FRFdata("Frequency_Response_Axis-1_1_-_1000Hz.csv");
+            FRF[] Close_ref =  Tool.Read_ServoGuide_FRFdata("Frequency_Response_Axis-1_1_-_1000Hz_edited.csv");
             //set freq interval. it should be identical with ref.
             //VR.IsFreqDataSameAsRef = true;
             //VR.SetCustomFreqInterval(Close_ref);
@@ -114,39 +113,7 @@ namespace FRF_Form_test
 
             return P;
         }
-        public static void CreateModes(List<Mode> VLoopModes)
-        {
-
-            Mode mode;
-
-
-            mode = new Mode();
-            mode.Freq = 0;
-            mode.Zeta = 0;
-            mode.Mass = 0.00546 + 0.012;
-
-            VLoopModes.Add(mode);
-
-            mode = new Mode();
-            mode.Freq = 55;
-            mode.Zeta = 0.1;
-            mode.Mass = 0.3;
-            VLoopModes.Add(mode);
-
-            mode = new Mode();
-            mode.Freq = 120;
-            mode.Zeta = 0.07;
-            mode.Mass = 0.12;
-            VLoopModes.Add(mode);
-
-            mode = new Mode();
-            mode.Freq = 315;
-            mode.Zeta = 0.1;
-            mode.Mass = 0.05;
-            VLoopModes.Add(mode);
-
-
-        }
+        
         void DrawLine(FRF[] FRFData, int Channel)
         {
             //X AXIS in log scale
@@ -187,7 +154,7 @@ namespace FRF_Form_test
         }
         #endregion
 
-
+        #region Enrique Solarte
         private void InformationTipEvent(object sender, System.Windows.Forms.DataVisualization.Charting.ToolTipEventArgs e)
         {
             if (e.HitTestResult.ChartElementType == ChartElementType.DataPoint)
@@ -203,5 +170,6 @@ namespace FRF_Form_test
             FormGradientDescentOption GDFrom = new FormGradientDescentOption(this);
             GDFrom.Show();
         }
+        #endregion
     }
 }

@@ -11,7 +11,7 @@ namespace Optimization
     {
         private ObjectiveFunction CostFunction;
         public Settings GD_Settings { get; set; }
-        private bool InErrorRange;
+      
 
         public double[] GetFeatureHistory(int index = 0)
         {
@@ -43,18 +43,20 @@ namespace Optimization
         public double[] Solve(ObjectiveFunction ObjFun)
         {
             CostFunction = ObjFun;
-            double[] ParametersResult = GD_Settings.InitialParameters;
+            double[] ParametersResult = (double[])GD_Settings.InitialParameters.Clone() ;
 
-            int iter = 1;
-            InErrorRange = false;
-            while (iter < GD_Settings.Iteractions || InErrorRange)
+            int iter = 0;
+             while(iter <= GD_Settings.Iteractions)
             {
                 double[] auxParameters = new double[GD_Settings.InitialParameters.Length];
-                for (int i = 0; i < GD_Settings.InitialParameters.Length; i++)
+
+                Parallel.For (0, GD_Settings.InitialParameters.Length, i=>
                 {
-                    auxParameters[i] = ParametersResult[i] - GD_Settings.LearningRate[i] * PartialDerivative(ParametersResult, i);
-                }
-                ParametersResult = auxParameters;
+                    auxParameters[i] = ParametersResult[i] - GD_Settings.LearningRate[i] * PartialDerivative((double[])ParametersResult.Clone(), i);
+                });
+
+                ParametersResult = new double[auxParameters.Length];
+                ParametersResult = (double[])auxParameters.Clone();
                 double error = ObjFun(ParametersResult);
 
                 OPTHistoryResult.Add(new Result
@@ -62,6 +64,9 @@ namespace Optimization
                     Parameters = (double[])ParametersResult.Clone(),
                     target = new double[1] { error }
                 });
+
+                if (error < GD_Settings.Error.MaxValue && error > GD_Settings.Error.MinValue)
+                    break;
 
                 iter++;
             }

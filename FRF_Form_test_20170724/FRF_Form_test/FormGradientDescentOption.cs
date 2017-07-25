@@ -17,7 +17,8 @@ namespace FRF_Form_test
     public partial class FormGradientDescentOption : Form
     {
         private Form1 FormMain;
-        
+        List<Mode> VLoopModes;
+        Range RangeEvaluation;
 
         public bool IsThereDataAvailable { get; private set; }
 
@@ -27,28 +28,29 @@ namespace FRF_Form_test
         public FormGradientDescentOption(Form1 formMain)
         {
             InitializeComponent();
-            FormMain = formMain;
-            
-            
+            FormMain = formMain;            
         }
 
         private void RunGDEvent(object sender, EventArgs e)
         {
-            buttonRunGradientDescent.Enabled = false;
-        
+            VLoopModes = new List<Mode>();
+            CreateModes(VLoopModes);
+            RangeEvaluation = new Range { MinValue = TryToDouble(textBoxEvalRangeMin.Text), MaxValue = TryToDouble(textBoxEvalRangeMax.Text) };
+            buttonRunGradientDescent.Enabled = false;       
             GradientDescentOptimization();
             buttonRunGradientDescent.Enabled = true;
         }
 
+        //>>>>Here RUN Gradient Descent
         private void GradientDescentOptimization()
         {
             IsThereDataAvailable = false;
-            double[] InitialParameters = new double[9];
-
+            double[] InitialParameters = new double[(VLoopModes.Count -1)*3];
             InitialParameters = GettingInitialValues();
 
             double[] LearningRate = new double[InitialParameters.Length];
-            for(int i=0; i< 3; i++)
+
+            for(int i=0; i< InitialParameters.Length/3; i++)
             {
                 LearningRate[0 + i * 3] = TryToDouble(textBoxLRateFreq.Text);
                 LearningRate[1 + i * 3] = TryToDouble(textBoxLRateZeta.Text);
@@ -62,13 +64,16 @@ namespace FRF_Form_test
                 );
 
             GD.GD_Settings.Delta = TryToDouble(textBoxDelta.Text);
-
+            GD.GD_Settings.Error = new Range { MaxValue = 0.0001, MinValue = 0 };
             GD.Solve(CostFucntion);
 
             #region Writting Results
-            textBoxOPFreq.Text = GD.OPTResult.Parameters[0].ToString("00.000") + "-" + GD.OPTResult.Parameters[3].ToString("00.000") + "-" + GD.OPTResult.Parameters[6].ToString("00.000");
-            textBoxOPZeta.Text = GD.OPTResult.Parameters[1].ToString("0.000") + "-" + GD.OPTResult.Parameters[4].ToString("0.000") + "-" + GD.OPTResult.Parameters[7].ToString("0.000");
-            textBoxOPMass.Text = GD.OPTResult.Parameters[2].ToString("0.000") + "-" + GD.OPTResult.Parameters[5].ToString("0.000") + "-" + GD.OPTResult.Parameters[8].ToString("0.000");
+            for(int i=0; i< GD.OPTResult.Parameters.Length/3; i++ )
+            {
+                textBoxOPFreq.Text = textBoxOPFreq.Text + "   " + GD.OPTResult.Parameters[0 + i * 3].ToString("00.000");
+                textBoxOPZeta.Text = textBoxOPZeta.Text + "   " + GD.OPTResult.Parameters[1 + i * 3].ToString("0.000");
+                textBoxOPMass.Text = textBoxOPMass.Text + "   " + GD.OPTResult.Parameters[2 + i * 3].ToString("0.000");         
+            }
             textBoxOPError.Text = GD.OPTResult.target[0].ToString();
             #endregion
 
@@ -78,12 +83,12 @@ namespace FRF_Form_test
             newVLoopModes = new List<Mode>();
             newVLoopModes.Add(new Mode
             {
-                Freq = FormMain.VLoopModes[0].Freq,
-                Zeta = FormMain.VLoopModes[0].Zeta,
-                Mass = FormMain.VLoopModes[0].Mass
+                Freq = VLoopModes[0].Freq,
+                Zeta = VLoopModes[0].Zeta,
+                Mass = VLoopModes[0].Mass
             });
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < InitialParameters.Length/ 3; i++)
             {
                 Mode mode = new Mode();
                 mode.Freq = GD.OPTResult.Parameters[0 + i * 3];
@@ -102,16 +107,16 @@ namespace FRF_Form_test
 
             FormMain.DrawResult(Struct_sim);
         }
-
+        //<<<
         private double[] GettingInitialValues()
         {
-            double[] iniValues = new double[9];
+            double[] iniValues = new double[(VLoopModes.Count -1)*3];
 
-            for(int i=0; i < 3; i++)
+            for(int i=0; i < VLoopModes.Count-1; i++)
             {
-                iniValues[0 + i*3] = FormMain.VLoopModes[i+1].Freq;
-                iniValues[1 + i*3] = FormMain.VLoopModes[i+1].Zeta;
-                iniValues[2 + i*3] = FormMain.VLoopModes[i+1].Mass;
+                iniValues[0 + i*3] = VLoopModes[i+1].Freq;
+                iniValues[1 + i*3] = VLoopModes[i+1].Zeta;
+                iniValues[2 + i*3] = VLoopModes[i+1].Mass;
             }
             return (double[])iniValues.Clone();
         }
@@ -122,9 +127,9 @@ namespace FRF_Form_test
 
             List<Mode> Modes = new List<Mode>();
             Modes.Add(new Mode {
-                Freq = FormMain.VLoopModes[0].Freq,
-                Zeta = FormMain.VLoopModes[0].Zeta,
-                Mass = FormMain.VLoopModes[0].Mass
+                Freq = VLoopModes[0].Freq,
+                Zeta = VLoopModes[0].Zeta,
+                Mass = VLoopModes[0].Mass
             });
 
             for(int i=0;i< 3; i++)
@@ -136,19 +141,54 @@ namespace FRF_Form_test
                 Modes.Add(mode);
             }
 
-            double error = 0;
+            double errorMag = 0;
+            double errorPhs = 0;
             for (int i = 0; i < FormMain.Struct_ref.Length; i++)
             {
                 Complex Res = Tool.GetStructureResponse(FormMain.Struct_ref[i].Freq, Modes, "Velocity");
                 Struct_sim[i] = new FRF(FormMain.Struct_ref[i].Freq, Res);
 
-                error = Math.Pow(Struct_sim[i].Mag - FormMain.Struct_ref[i].Mag, 2) + error;
-
+                if(Struct_sim[i].Freq > RangeEvaluation.MinValue && Struct_sim[i].Freq < RangeEvaluation.MaxValue)
+                {
+                    errorMag = Math.Pow(Struct_sim[i].Mag - FormMain.Struct_ref[i].Mag, 2) + errorMag;
+                    errorPhs = Math.Pow(Struct_sim[i].Phs - FormMain.Struct_ref[i].Phs, 2) + errorPhs;
+                }
+               
             }
-            return error;
+            return errorMag;
         }
 
+        public static void CreateModes(List<Mode> VLoopModes)
+        {
 
+            Mode mode;
+            mode = new Mode();
+            mode.Freq = 0;
+            mode.Zeta = 0;
+            mode.Mass = 0.00546 + 0.012;
+          
+            VLoopModes.Add(mode);
+
+            mode = new Mode();
+            mode.Freq = 55;
+            mode.Zeta = 0.05;
+            mode.Mass = 0.05;
+            VLoopModes.Add(mode);
+
+            mode = new Mode();
+            mode.Freq = 120;
+            mode.Zeta = 0.05;
+            mode.Mass = 0.05;
+            VLoopModes.Add(mode);
+
+            mode = new Mode();
+            mode.Freq = 315;
+            mode.Zeta = 0.05;
+            mode.Mass = 0.05;
+            VLoopModes.Add(mode);
+
+
+        }
 
         #region Fix Code
         private void chart_mag_GetToolTipText(object sender, System.Windows.Forms.DataVisualization.Charting.ToolTipEventArgs e)
@@ -184,24 +224,28 @@ namespace FRF_Form_test
             if (IsThereDataAvailable)
             {
                 DrawLine(GD.GetErrorHistory(), 0, chartFitness);
-
-                if (radioButtonFreq.Checked)
-                {
-                    DrawLine(GD.GetFeatureHistory(0), 0, chartParameters);
-                    DrawLine(GD.GetFeatureHistory(3), 1, chartParameters);
-                    DrawLine(GD.GetFeatureHistory(6), 2, chartParameters);
-                }
                 if (radioButtonZeta.Checked)
                 {
-                    DrawLine(GD.GetFeatureHistory(1), 0, chartParameters);
-                    DrawLine(GD.GetFeatureHistory(4), 1, chartParameters);
-                    DrawLine(GD.GetFeatureHistory(7), 2, chartParameters);
+                    for (int i = 0; i < GD.OPTResult.Parameters.Length / 3; i++)
+                    {
+                        DrawLine(GD.GetFeatureHistory(0 + i*3), i, chartParameters);
+                    }                  
+                }
+
+                
+                if (radioButtonZeta.Checked)
+                {
+                    for (int i = 0; i < GD.OPTResult.Parameters.Length / 3; i++)
+                    {
+                        DrawLine(GD.GetFeatureHistory(1 + i * 3), i, chartParameters);
+                    }
                 }
                 if (radioButtonMass.Checked)
                 {
-                    DrawLine(GD.GetFeatureHistory(2), 0, chartParameters);
-                    DrawLine(GD.GetFeatureHistory(5), 1, chartParameters);
-                    DrawLine(GD.GetFeatureHistory(8), 2, chartParameters);
+                    for (int i = 0; i < GD.OPTResult.Parameters.Length / 3; i++)
+                    {
+                        DrawLine(GD.GetFeatureHistory(2 + i * 3), i, chartParameters);
+                    }
                 }
             }
         }
