@@ -68,7 +68,10 @@ namespace FRF_Form_test
             GD.Solve(CostFucntion);
 
             #region Writting Results
-            for(int i=0; i< GD.OPTResult.Parameters.Length/3; i++ )
+            textBoxOPFreq.Clear();
+            textBoxOPZeta.Clear();
+            textBoxOPMass.Clear();
+            for (int i=0; i< GD.OPTResult.Parameters.Length/3; i++ )
             {
                 textBoxOPFreq.Text = textBoxOPFreq.Text + "   " + GD.OPTResult.Parameters[0 + i * 3].ToString("00.000");
                 textBoxOPZeta.Text = textBoxOPZeta.Text + "   " + GD.OPTResult.Parameters[1 + i * 3].ToString("0.000");
@@ -170,23 +173,25 @@ namespace FRF_Form_test
             VLoopModes.Add(mode);
 
             mode = new Mode();
-            mode.Freq = 55;
+            // mode.Freq = 55;
+            mode.Freq = 40;
             mode.Zeta = 0.05;
             mode.Mass = 0.05;
             VLoopModes.Add(mode);
 
             mode = new Mode();
-            mode.Freq = 120;
+            //mode.Freq = 120;
+            mode.Freq = 130;
             mode.Zeta = 0.05;
             mode.Mass = 0.05;
             VLoopModes.Add(mode);
 
             mode = new Mode();
-            mode.Freq = 315;
+           // mode.Freq = 315;
+            mode.Freq = 300;
             mode.Zeta = 0.05;
             mode.Mass = 0.05;
             VLoopModes.Add(mode);
-
 
         }
 
@@ -224,7 +229,7 @@ namespace FRF_Form_test
             if (IsThereDataAvailable)
             {
                 DrawLine(GD.GetErrorHistory(), 0, chartFitness);
-                if (radioButtonZeta.Checked)
+                if (radioButtonFreq.Checked)
                 {
                     for (int i = 0; i < GD.OPTResult.Parameters.Length / 3; i++)
                     {

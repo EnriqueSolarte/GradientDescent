@@ -28,30 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.chartFitness = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.radioButtonMass = new System.Windows.Forms.RadioButton();
             this.radioButtonZeta = new System.Windows.Forms.RadioButton();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxMag3 = new System.Windows.Forms.TextBox();
-            this.textBoxMag2 = new System.Windows.Forms.TextBox();
-            this.textBoxMag1 = new System.Windows.Forms.TextBox();
-            this.textBoxFreq3 = new System.Windows.Forms.TextBox();
-            this.textBoxFreq2 = new System.Windows.Forms.TextBox();
-            this.textBoxFreq1 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.buttonRunGradientDescent = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -68,7 +57,6 @@
             this.textBoxOPZeta = new System.Windows.Forms.TextBox();
             this.textBoxOPFreq = new System.Windows.Forms.TextBox();
             this.textBoxOPMass = new System.Windows.Forms.TextBox();
-            this.checkBoxInitialValues = new System.Windows.Forms.CheckBox();
             this.radioButtonFreq = new System.Windows.Forms.RadioButton();
             this.chartParameters = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.textBoxLRateZeta = new System.Windows.Forms.TextBox();
@@ -82,25 +70,25 @@
             // 
             // chartFitness
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartFitness.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartFitness.Legends.Add(legend1);
+            chartArea3.Name = "ChartArea1";
+            this.chartFitness.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartFitness.Legends.Add(legend3);
             this.chartFitness.Location = new System.Drawing.Point(-1, 0);
             this.chartFitness.Margin = new System.Windows.Forms.Padding(2);
             this.chartFitness.Name = "chartFitness";
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Legend = "Legend1";
-            series2.Name = "Series2";
-            this.chartFitness.Series.Add(series1);
-            this.chartFitness.Series.Add(series2);
+            series7.BorderWidth = 2;
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            series8.BorderWidth = 2;
+            series8.ChartArea = "ChartArea1";
+            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series8.Legend = "Legend1";
+            series8.Name = "Series2";
+            this.chartFitness.Series.Add(series7);
+            this.chartFitness.Series.Add(series8);
             this.chartFitness.Size = new System.Drawing.Size(742, 306);
             this.chartFitness.TabIndex = 3;
             this.chartFitness.Text = "11";
@@ -130,100 +118,6 @@
             this.radioButtonZeta.UseVisualStyleBackColor = true;
             this.radioButtonZeta.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(162, 632);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(46, 12);
-            this.label22.TabIndex = 37;
-            this.label22.Text = "Mg [dB]";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(13, 710);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(35, 12);
-            this.label21.TabIndex = 38;
-            this.label21.Text = "Freq 3";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 679);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 12);
-            this.label2.TabIndex = 39;
-            this.label2.Text = "Freq 2";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 654);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 12);
-            this.label1.TabIndex = 40;
-            this.label1.Text = "Freq 1";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(68, 632);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 12);
-            this.label3.TabIndex = 41;
-            this.label3.Text = "Freq [Hz]";
-            // 
-            // textBoxMag3
-            // 
-            this.textBoxMag3.Location = new System.Drawing.Point(151, 708);
-            this.textBoxMag3.Name = "textBoxMag3";
-            this.textBoxMag3.Size = new System.Drawing.Size(68, 22);
-            this.textBoxMag3.TabIndex = 32;
-            this.textBoxMag3.Text = "-23.67";
-            // 
-            // textBoxMag2
-            // 
-            this.textBoxMag2.Location = new System.Drawing.Point(151, 680);
-            this.textBoxMag2.Name = "textBoxMag2";
-            this.textBoxMag2.Size = new System.Drawing.Size(68, 22);
-            this.textBoxMag2.TabIndex = 33;
-            this.textBoxMag2.Text = "-19";
-            // 
-            // textBoxMag1
-            // 
-            this.textBoxMag1.Location = new System.Drawing.Point(151, 651);
-            this.textBoxMag1.Name = "textBoxMag1";
-            this.textBoxMag1.Size = new System.Drawing.Size(68, 22);
-            this.textBoxMag1.TabIndex = 34;
-            this.textBoxMag1.Text = "-15.65";
-            // 
-            // textBoxFreq3
-            // 
-            this.textBoxFreq3.Location = new System.Drawing.Point(54, 707);
-            this.textBoxFreq3.Name = "textBoxFreq3";
-            this.textBoxFreq3.Size = new System.Drawing.Size(79, 22);
-            this.textBoxFreq3.TabIndex = 35;
-            this.textBoxFreq3.Text = "320";
-            // 
-            // textBoxFreq2
-            // 
-            this.textBoxFreq2.Location = new System.Drawing.Point(54, 677);
-            this.textBoxFreq2.Name = "textBoxFreq2";
-            this.textBoxFreq2.Size = new System.Drawing.Size(79, 22);
-            this.textBoxFreq2.TabIndex = 36;
-            this.textBoxFreq2.Text = "120";
-            // 
-            // textBoxFreq1
-            // 
-            this.textBoxFreq1.Location = new System.Drawing.Point(54, 649);
-            this.textBoxFreq1.Name = "textBoxFreq1";
-            this.textBoxFreq1.Size = new System.Drawing.Size(79, 22);
-            this.textBoxFreq1.TabIndex = 31;
-            this.textBoxFreq1.Tag = "";
-            this.textBoxFreq1.Text = "55";
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -246,7 +140,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(164, 753);
+            this.label10.Location = new System.Drawing.Point(255, 684);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(27, 12);
             this.label10.TabIndex = 52;
@@ -263,7 +157,7 @@
             // 
             // textBoxDelta
             // 
-            this.textBoxDelta.Location = new System.Drawing.Point(201, 750);
+            this.textBoxDelta.Location = new System.Drawing.Point(292, 681);
             this.textBoxDelta.Name = "textBoxDelta";
             this.textBoxDelta.Size = new System.Drawing.Size(51, 22);
             this.textBoxDelta.TabIndex = 51;
@@ -276,21 +170,21 @@
             this.textBoxLRateFreq.Size = new System.Drawing.Size(51, 22);
             this.textBoxLRateFreq.TabIndex = 50;
             this.textBoxLRateFreq.Tag = "";
-            this.textBoxLRateFreq.Text = "0.1";
+            this.textBoxLRateFreq.Text = "50";
             // 
             // textBoxIterations
             // 
-            this.textBoxIterations.Location = new System.Drawing.Point(94, 747);
+            this.textBoxIterations.Location = new System.Drawing.Point(292, 719);
             this.textBoxIterations.Name = "textBoxIterations";
             this.textBoxIterations.Size = new System.Drawing.Size(51, 22);
             this.textBoxIterations.TabIndex = 50;
             this.textBoxIterations.Tag = "";
-            this.textBoxIterations.Text = "500";
+            this.textBoxIterations.Text = "5000";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(40, 753);
+            this.label4.Location = new System.Drawing.Point(238, 725);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 12);
             this.label4.TabIndex = 53;
@@ -364,16 +258,6 @@
             this.textBoxOPMass.Size = new System.Drawing.Size(252, 22);
             this.textBoxOPMass.TabIndex = 57;
             // 
-            // checkBoxInitialValues
-            // 
-            this.checkBoxInitialValues.AutoSize = true;
-            this.checkBoxInitialValues.Location = new System.Drawing.Point(237, 657);
-            this.checkBoxInitialValues.Name = "checkBoxInitialValues";
-            this.checkBoxInitialValues.Size = new System.Drawing.Size(85, 16);
-            this.checkBoxInitialValues.TabIndex = 62;
-            this.checkBoxInitialValues.Text = "Initial Values";
-            this.checkBoxInitialValues.UseVisualStyleBackColor = true;
-            // 
             // radioButtonFreq
             // 
             this.radioButtonFreq.AutoSize = true;
@@ -388,36 +272,36 @@
             // 
             // chartParameters
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartParameters.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartParameters.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chartParameters.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chartParameters.Legends.Add(legend4);
             this.chartParameters.Location = new System.Drawing.Point(-1, 310);
             this.chartParameters.Margin = new System.Windows.Forms.Padding(2);
             this.chartParameters.Name = "chartParameters";
-            series3.BorderWidth = 2;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            series4.BorderWidth = 2;
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series4.Legend = "Legend1";
-            series4.Name = "Series2";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series5.Legend = "Legend1";
-            series5.Name = "Series3";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series6.Color = System.Drawing.Color.Fuchsia;
-            series6.Legend = "Legend1";
-            series6.Name = "Series4";
-            this.chartParameters.Series.Add(series3);
-            this.chartParameters.Series.Add(series4);
-            this.chartParameters.Series.Add(series5);
-            this.chartParameters.Series.Add(series6);
+            series9.BorderWidth = 2;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series9.Legend = "Legend1";
+            series9.Name = "Series1";
+            series10.BorderWidth = 2;
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series10.Legend = "Legend1";
+            series10.Name = "Series2";
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series11.Legend = "Legend1";
+            series11.Name = "Series3";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series12.Color = System.Drawing.Color.Fuchsia;
+            series12.Legend = "Legend1";
+            series12.Name = "Series4";
+            this.chartParameters.Series.Add(series9);
+            this.chartParameters.Series.Add(series10);
+            this.chartParameters.Series.Add(series11);
+            this.chartParameters.Series.Add(series12);
             this.chartParameters.Size = new System.Drawing.Size(742, 306);
             this.chartParameters.TabIndex = 64;
             this.chartParameters.Text = "11";
@@ -443,7 +327,7 @@
             // 
             // textBoxEvalRangeMin
             // 
-            this.textBoxEvalRangeMin.Location = new System.Drawing.Point(237, 708);
+            this.textBoxEvalRangeMin.Location = new System.Drawing.Point(262, 646);
             this.textBoxEvalRangeMin.Name = "textBoxEvalRangeMin";
             this.textBoxEvalRangeMin.Size = new System.Drawing.Size(38, 22);
             this.textBoxEvalRangeMin.TabIndex = 35;
@@ -452,7 +336,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(235, 693);
+            this.label7.Location = new System.Drawing.Point(260, 631);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 12);
             this.label7.TabIndex = 38;
@@ -460,7 +344,7 @@
             // 
             // textBoxEvalRangeMax
             // 
-            this.textBoxEvalRangeMax.Location = new System.Drawing.Point(281, 708);
+            this.textBoxEvalRangeMax.Location = new System.Drawing.Point(306, 646);
             this.textBoxEvalRangeMax.Name = "textBoxEvalRangeMax";
             this.textBoxEvalRangeMax.Size = new System.Drawing.Size(38, 22);
             this.textBoxEvalRangeMax.TabIndex = 35;
@@ -472,7 +356,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(743, 807);
             this.Controls.Add(this.radioButtonFreq);
-            this.Controls.Add(this.checkBoxInitialValues);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
@@ -491,20 +374,9 @@
             this.Controls.Add(this.textBoxLRateFreq);
             this.Controls.Add(this.buttonRunGradientDescent);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.label22);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label21);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBoxMag3);
-            this.Controls.Add(this.textBoxMag2);
-            this.Controls.Add(this.textBoxMag1);
             this.Controls.Add(this.textBoxEvalRangeMax);
             this.Controls.Add(this.textBoxEvalRangeMin);
-            this.Controls.Add(this.textBoxFreq3);
-            this.Controls.Add(this.textBoxFreq2);
-            this.Controls.Add(this.textBoxFreq1);
             this.Controls.Add(this.radioButtonMass);
             this.Controls.Add(this.radioButtonZeta);
             this.Controls.Add(this.chartFitness);
@@ -525,17 +397,6 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chartFitness;
         private System.Windows.Forms.RadioButton radioButtonMass;
         private System.Windows.Forms.RadioButton radioButtonZeta;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxMag3;
-        private System.Windows.Forms.TextBox textBoxMag2;
-        private System.Windows.Forms.TextBox textBoxMag1;
-        private System.Windows.Forms.TextBox textBoxFreq3;
-        private System.Windows.Forms.TextBox textBoxFreq2;
-        private System.Windows.Forms.TextBox textBoxFreq1;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button buttonRunGradientDescent;
         private System.Windows.Forms.Label label10;
@@ -552,7 +413,6 @@
         private System.Windows.Forms.TextBox textBoxOPZeta;
         private System.Windows.Forms.TextBox textBoxOPFreq;
         private System.Windows.Forms.TextBox textBoxOPMass;
-        private System.Windows.Forms.CheckBox checkBoxInitialValues;
         private System.Windows.Forms.RadioButton radioButtonFreq;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartParameters;
         private System.Windows.Forms.TextBox textBoxLRateZeta;
